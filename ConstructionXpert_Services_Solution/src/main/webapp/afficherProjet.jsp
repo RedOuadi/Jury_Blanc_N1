@@ -2,10 +2,12 @@
 <%@ page import="java.util.List" %>
 <%@ page import="metier.Projet" %>
 <%@ page import="dao.ProjetDAOImpl" %>
+
 <!DOCTYPE html>
 <html>
 <head>
     <meta charset="UTF-8">
+
     <title>Liste des projets</title>
     <style>
         table {
@@ -52,9 +54,9 @@
         <td><%= projet.getBudget() %></td>
         <td>
             <!-- Edit button -->
-            <a href="editProjet.jsp?idProjet=<%= projet.getId_projet() %>">Edit</a>
+            <a href="EditProjetServlet?idProjet=<%= projet.getId_projet() %>">Edit</a>
             <!-- Delete button -->
-            <a href="deleteProjet.jsp?idProjet=<%= projet.getId_projet() %>">Delete</a>
+            <a href="DeleteProjetServlet?idProjet=<%= projet.getId_projet() %>">Delete</a>
         </td>
     </tr>
     <% } %>

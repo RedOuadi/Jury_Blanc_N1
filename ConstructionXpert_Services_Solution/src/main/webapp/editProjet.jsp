@@ -1,8 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page import="metier.Projet" %>
 <!DOCTYPE html>
 <html>
 <head>
     <meta charset="UTF-8">
+    <%@include file="afficherProjet.jsp"%>
     <title>Modifier Projet</title>
     <!-- Include Bootstrap CSS -->
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
@@ -16,27 +18,28 @@
                     <h2 class="card-title">Modifier Projet</h2>
                 </div>
                 <div class="card-body">
-                    <form action="EditProjetServlet" method="POST">
-                        <input type="hidden" name="id_projet" value="<%= request.getParameter("idProjet") %>">
+                    <form action="EditProjetResponseServlet" method="POST">
+                        <% Projet projet = (Projet) request.getAttribute("projet"); %>
+                        <input type="hidden" name="id_projet" value="<%= projet.getId_projet() %>">
                         <div class="form-group">
                             <label for="nom_proj">Nom du Projet</label>
-                            <input type="text" class="form-control" id="nom_proj" name="nom_proj" value="<%= request.getParameter("nom") %>">
+                            <input type="text" class="form-control" id="nom_proj" name="nom_proj" value="<%= projet.getNom() %>" required>
                         </div>
                         <div class="form-group">
                             <label for="description">Description</label>
-                            <input type="text" class="form-control" id="description" name="description" value="<%= request.getParameter("description") %>">
+                            <input type="text" class="form-control" id="description" name="description" value="<%= projet.getDescription() %>" required>
                         </div>
                         <div class="form-group">
                             <label for="date_debut">Date de Début</label>
-                            <input type="date" class="form-control" id="date_debut" name="date_debut" value="<%= request.getParameter("dateDebut") %>">
+                            <input type="date" class="form-control" id="date_debut" name="date_debut" value="<%= projet.getDateDebut() %>" required>
                         </div>
                         <div class="form-group">
                             <label for="date_fin">Date de Fin</label>
-                            <input type="date" class="form-control" id="date_fin" name="date_fin" value="<%= request.getParameter("dateFin") %>">
+                            <input type="date" class="form-control" id="date_fin" name="date_fin" value="<%= projet.getDateFin() %>" required>
                         </div>
                         <div class="form-group">
                             <label for="budget">Budget</label>
-                            <input type="number" class="form-control" id="budget" name="budget" value="<%= request.getParameter("budget") %>">
+                            <input type="number" class="form-control" id="budget" name="budget" value="<%= projet.getBudget() %>" required>
                         </div>
                         <button type="submit" class="btn btn-success btn-block">Enregistrer</button>
                     </form>
@@ -52,4 +55,7 @@
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </body>
 </html>
+
+
+
 
