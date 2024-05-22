@@ -5,7 +5,7 @@ CREATE TABLE Projet (
     description TEXT,
     dateDebut DATE,
     dateFin DATE,
-    budget DOUBLE PRECISION
+    budget DOUBLE 
 );
 
 -- Création de la table Tache
