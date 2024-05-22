@@ -69,8 +69,8 @@ public class TacheDAOImpl implements ITacheDAO {
                 tache = new Tache();
                 tache.setId_tache(rs.getInt("id_tache"));
                 tache.setDescription(rs.getString("description"));
-                tache.setDateDebut(rs.getDate("date_debut"));
-                tache.setDateFin(rs.getDate("date_fin"));
+                tache.setDateDebut(rs.getDate("dateDebut"));
+                tache.setDateFin(rs.getDate("dateFin"));
                 tache.setStatut(rs.getString("statut"));
                 // Assuming Projet object is set elsewhere, as fetching it here would require a join
             }

@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@ page import="java.util.List"%>
-<%@ page import="metier.Projet"%>
-<%@ page import="dao.ProjetDAOImpl"%>
+<%@ page import="java.util.List" %>
+<%@ page import="metier.Projet" %>
+<%@ page import="dao.ProjetDAOImpl" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -24,10 +24,9 @@
 </head>
 <body>
 <%
-    // Initialiser le DAO et récupérer la liste des projets
+    // Initialize the DAO and retrieve the list of projects
     ProjetDAOImpl projetDAO = new ProjetDAOImpl();
     List<Projet> listeProjets = projetDAO.findAll();
-
 %>
 <h1>Liste des projets</h1>
 <table>
@@ -39,6 +38,7 @@
         <th>Date de Début</th>
         <th>Date de Fin</th>
         <th>Budget</th>
+        <th>Actions</th> <!-- New column for actions -->
     </tr>
     </thead>
     <tbody>
@@ -50,10 +50,18 @@
         <td><%= projet.getDateDebut() %></td>
         <td><%= projet.getDateFin() %></td>
         <td><%= projet.getBudget() %></td>
+        <td>
+            <!-- Edit button -->
+            <a href="editProjet.jsp?idProjet=<%= projet.getId_projet() %>">Edit</a>
+            <!-- Delete button -->
+            <a href="deleteProjet.jsp?idProjet=<%= projet.getId_projet() %>">Delete</a>
+        </td>
     </tr>
     <% } %>
     </tbody>
 </table>
+<!-- Add Project button -->
+<a href="addProjet.jsp">Ajouter Projet</a>
 </body>
 </html>
 
