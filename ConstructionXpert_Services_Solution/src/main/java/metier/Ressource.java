@@ -9,6 +9,8 @@ public class Ressource {
     private int quantite;
     private String fournisseur;
 
+    private int id_tache;
+
     // Getters and setters
     public int getId_ressource() {
         return id_ressource;
@@ -42,14 +44,24 @@ public class Ressource {
         this.quantite = quantite;
     }
 
-    public String getFournisseur() {
-        return fournisseur;
-    }
 
     public void setFournisseur(String fournisseur) {
         this.fournisseur = fournisseur;
     }
 
+    public String getFournisseur() {
+        return fournisseur;
+    }
+
+
+
+    public int getId_tache() {
+        return id_tache;
+    }
+
+    public void setId_tache(int id_tache) {
+        this.id_tache = id_tache;
+    }
 
 }
 

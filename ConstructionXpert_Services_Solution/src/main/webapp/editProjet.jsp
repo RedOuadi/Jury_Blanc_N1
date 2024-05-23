@@ -46,7 +46,7 @@
                 </div>
             </div>
         </div>
-    </div>
+   w </div>
 </div>
 
 <!-- Include Bootstrap JS and dependencies -->

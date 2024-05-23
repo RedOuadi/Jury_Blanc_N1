@@ -9,8 +9,7 @@ public class Tache {
     private Date dateDebut;
     private Date dateFin;
     private String statut;
-    private Projet projet;
-    private List<Ressource> ressources;
+    private int id_projet;
 
     // Getters and setters
     public int getId_tache() {
@@ -53,20 +52,12 @@ public class Tache {
         this.statut = statut;
     }
 
-    public Projet getProjet() {
-        return projet;
+    public int getId_projet() {
+        return id_projet;
     }
 
-    public void setProjet(Projet projet) {
-        this.projet = projet;
-    }
-
-    public List<Ressource> getRessources() {
-        return ressources;
-    }
-
-    public void setRessources(List<Ressource> ressources) {
-        this.ressources = ressources;
+    public void setId_projet(int id_projet) {
+        this.id_projet = id_projet;
     }
 
 }

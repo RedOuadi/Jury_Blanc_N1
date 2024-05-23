@@ -8,9 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 import metier.Tache;
 
-
 public class TacheDAOImpl implements ITacheDAO {
-
     private Connection connection;
 
     public TacheDAOImpl() {
@@ -18,40 +16,45 @@ public class TacheDAOImpl implements ITacheDAO {
     }
 
     @Override
-    public Tache save(Tache t) {
+    public Tache save(Tache tache) {
         try {
-            PreparedStatement ps = connection.prepareStatement("INSERT INTO tache(description, date_debut, date_fin, statut, id_projet) VALUES (?, ?, ?, ?, ?)");
-            ps.setString(1, t.getDescription());
-            ps.setDate(2, new java.sql.Date(t.getDateDebut().getTime()));
-            ps.setDate(3, new java.sql.Date(t.getDateFin().getTime()));
-            ps.setString(4, t.getStatut());
-            ps.setInt(5, t.getProjet().getId_projet());
+            PreparedStatement ps = connection.prepareStatement(
+                    "INSERT INTO Tache (description, dateDebut, dateFin, statut, id_projet) VALUES (?, ?, ?, ?, ?)",
+                    PreparedStatement.RETURN_GENERATED_KEYS
+            );
+            ps.setString(1, tache.getDescription());
+            ps.setDate(2, new java.sql.Date(tache.getDateDebut().getTime()));
+            ps.setDate(3, new java.sql.Date(tache.getDateFin().getTime()));
+            ps.setString(4, tache.getStatut());
+            ps.setInt(5, tache.getId_projet());
             ps.executeUpdate();
-            ps.close();
+
+            ResultSet rs = ps.getGeneratedKeys();
+            if (rs.next()) {
+                tache.setId_tache(rs.getInt(1));
+            }
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        return t;
+        return tache;
     }
 
     @Override
     public List<Tache> findAll() {
         List<Tache> taches = new ArrayList<>();
         try {
-            PreparedStatement ps = connection.prepareStatement("SELECT * FROM tache");
+            PreparedStatement ps = connection.prepareStatement("SELECT * FROM Tache");
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
                 Tache tache = new Tache();
                 tache.setId_tache(rs.getInt("id_tache"));
                 tache.setDescription(rs.getString("description"));
-                tache.setDateDebut(rs.getDate("date_debut"));
-                tache.setDateFin(rs.getDate("date_fin"));
+                tache.setDateDebut(rs.getDate("dateDebut"));
+                tache.setDateFin(rs.getDate("dateFin"));
                 tache.setStatut(rs.getString("statut"));
-                // Assuming Projet object is set elsewhere, as fetching it here would require a join
+                tache.setId_projet(rs.getInt("id_projet"));
                 taches.add(tache);
             }
-            rs.close();
-            ps.close();
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -62,7 +65,7 @@ public class TacheDAOImpl implements ITacheDAO {
     public Tache getTache(int id) {
         Tache tache = null;
         try {
-            PreparedStatement ps = connection.prepareStatement("SELECT * FROM tache WHERE id_tache = ?");
+            PreparedStatement ps = connection.prepareStatement("SELECT * FROM Tache WHERE id_tache = ?");
             ps.setInt(1, id);
             ResultSet rs = ps.executeQuery();
             if (rs.next()) {
@@ -72,10 +75,8 @@ public class TacheDAOImpl implements ITacheDAO {
                 tache.setDateDebut(rs.getDate("dateDebut"));
                 tache.setDateFin(rs.getDate("dateFin"));
                 tache.setStatut(rs.getString("statut"));
-                // Assuming Projet object is set elsewhere, as fetching it here would require a join
+                tache.setId_projet(rs.getInt("id_projet"));
             }
-            rs.close();
-            ps.close();
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -83,32 +84,34 @@ public class TacheDAOImpl implements ITacheDAO {
     }
 
     @Override
-    public Tache update(Tache t) {
+    public Tache update(Tache tache) {
         try {
-            PreparedStatement ps = connection.prepareStatement("UPDATE tache SET description=?, date_debut=?, date_fin=?, statut=?, id_projet=? WHERE id_tache=?");
-            ps.setString(1, t.getDescription());
-            ps.setDate(2, new java.sql.Date(t.getDateDebut().getTime()));
-            ps.setDate(3, new java.sql.Date(t.getDateFin().getTime()));
-            ps.setString(4, t.getStatut());
-            ps.setInt(5, t.getProjet().getId_projet());
-            ps.setInt(6, t.getId_tache());
+            PreparedStatement ps = connection.prepareStatement(
+                    "UPDATE Tache SET description = ?, dateDebut = ?, dateFin = ?, statut = ?, id_projet = ? WHERE id_tache = ?"
+            );
+            ps.setString(1, tache.getDescription());
+            ps.setDate(2, new java.sql.Date(tache.getDateDebut().getTime()));
+            ps.setDate(3, new java.sql.Date(tache.getDateFin().getTime()));
+            ps.setString(4, tache.getStatut());
+            ps.setInt(5, tache.getId_projet());
+            ps.setInt(6, tache.getId_tache());
             ps.executeUpdate();
-            ps.close();
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        return t;
+        return tache;
     }
 
     @Override
     public void deleteTache(int id) {
         try {
-            PreparedStatement ps = connection.prepareStatement("DELETE FROM tache WHERE id_tache = ?");
+            PreparedStatement ps = connection.prepareStatement("DELETE FROM Tache WHERE id_tache = ?");
             ps.setInt(1, id);
             ps.executeUpdate();
-            ps.close();
         } catch (SQLException e) {
             e.printStackTrace();
         }
     }
 }
+
+
