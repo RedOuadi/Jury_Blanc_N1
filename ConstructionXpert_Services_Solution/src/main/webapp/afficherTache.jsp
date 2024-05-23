@@ -15,7 +15,14 @@
 </head>
 <body>
 <%
-    int projectId = Integer.parseInt(request.getParameter("projectId"));
+    // Vérifier si le paramètre "projectId" est présent et non null dans la requête
+    String projectIdParam = request.getParameter("projectId");
+    int projectId = 0; // Valeur par défaut si le paramètre est manquant ou null
+    if (projectIdParam != null && !projectIdParam.isEmpty()) {
+        projectId = Integer.parseInt(projectIdParam);
+    }
+
+    // Si le paramètre "projectId" est égal à zéro, vous pouvez choisir de gérer ce cas selon votre logique métier
 
     ProjetDAOImpl projetDAO = new ProjetDAOImpl();
     Projet projet = projetDAO.getProjet(projectId);
@@ -27,12 +34,10 @@
             listeTaches.add(tache);
         }
     }
-
-
 %>
 <div class="container">
-    <h1 class="mt-5">Tâches pour le projet: <%= projet.getNom() %></h1>
-    <a href="addTache.jsp?projectId=<%= projet.getId_projet() %>" class="btn btn-primary mb-3">Ajouter Tâche</a>
+    <h1 class="mt-5">Tâches pour le projet: <%= projet != null ? projet.getNom() : "Projet non trouvé" %></h1>
+    <a href="addTache.jsp?projectId=<%= projectId %>" class="btn btn-primary mb-3">Ajouter Tâche</a>
     <div class="row">
         <% if (listeTaches.isEmpty()) { %>
         <div class="col-12 mb-4">
@@ -56,7 +61,7 @@
                     <div class="d-flex justify-content-between">
                         <a href="EditTacheServlet?idTache=<%= tache.getId_tache() %>" class="btn btn-warning btn-sm">Modifier</a>
                         <a href="DeleteTacheServlet?idTache=<%= tache.getId_tache() %>" class="btn btn-danger btn-sm">Supprimer</a>
-                        <a href="afficherRessource.jsp?projectId=<%= tache.getId_tache() %>" class="btn btn-info btn-sm">Gérer les Ressources</a>
+                        <a href="afficherRessource.jsp?idTache=<%= tache.getId_tache() %>" class="btn btn-info btn-sm">Gérer les Ressources</a>
                     </div>
                 </div>
             </div>
@@ -68,6 +73,7 @@
 
 </body>
 </html>
+
 
 
 
