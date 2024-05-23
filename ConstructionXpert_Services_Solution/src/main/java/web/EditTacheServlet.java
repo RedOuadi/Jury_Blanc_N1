@@ -33,39 +33,5 @@ public class EditTacheServlet extends HttpServlet {
         request.getRequestDispatcher("editTache.jsp").forward(request, response);
     }
 
-    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        // Récupérer les paramètres du formulaire
-        int idTache = Integer.parseInt(request.getParameter("id_tache"));
-        String description = request.getParameter("description");
-        String dateDebutStr = request.getParameter("date_debut");
-        String dateFinStr = request.getParameter("date_fin");
-        String statut = request.getParameter("statut");
-        int id_projet = Integer.parseInt(request.getParameter("id_projet"));
 
-        // Créer une nouvelle instance de Tache et définir ses propriétés
-        Tache tache = new Tache();
-        tache.setId_tache(idTache);
-        tache.setDescription(description);
-
-        // Parse and set dateDebut and dateFin
-        try {
-            Date dateDebut = new SimpleDateFormat("yyyy-MM-dd").parse(dateDebutStr);
-            tache.setDateDebut(dateDebut);
-            Date dateFin = new SimpleDateFormat("yyyy-MM-dd").parse(dateFinStr);
-            tache.setDateFin(dateFin);
-        } catch (ParseException e) {
-            e.printStackTrace();
-            // Handle the parsing exception (e.g., log it, send an error response, etc.)
-        }
-
-        tache.setStatut(statut);
-        tache.setId_projet(id_projet);
-
-        // Mettre à jour la tâche en utilisant le DAO
-        TacheDAOImpl tacheDAO = new TacheDAOImpl();
-        tacheDAO.update(tache);
-
-        // Rediriger vers la liste des tâches du projet
-        response.sendRedirect("afficherTache.jsp?projectId=" + id_projet);
-    }
 }

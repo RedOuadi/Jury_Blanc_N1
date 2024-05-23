@@ -56,7 +56,7 @@
             <td><%= ressource.getQuantite() %></td>
             <td><%= ressource.getFournisseur() %></td>
             <td>
-                <a href="editRessource.jsp?idRessource=<%= ressource.getId_ressource() %>" class="btn btn-warning btn-sm">Modifier</a>
+                <a href="EditRessourceServlet?idRessource=<%= ressource.getId_ressource() %>" class="btn btn-warning btn-sm">Modifier</a>
                 <a href="deleteRessource.jsp?idRessource=<%= ressource.getId_ressource() %>" class="btn btn-danger btn-sm">Supprimer</a>
             </td>
         </tr>
