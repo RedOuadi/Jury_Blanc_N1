@@ -5,7 +5,7 @@ CREATE TABLE Projet (
     description TEXT,
     dateDebut DATE,
     dateFin DATE,
-    budget DOUBLE 
+    budget DOUBLE PRECISION
 );
 
 -- Création de la table Tache
@@ -16,7 +16,7 @@ CREATE TABLE Tache (
     dateFin DATE,
     statut VARCHAR(50),
     id_projet INT,
-    FOREIGN KEY (id_projet) REFERENCES Projet(id_projet)
+    FOREIGN KEY (id_projet) REFERENCES Projet(id_projet) ON DELETE CASCADE
 );
 
 -- Création de la table Ressource
@@ -27,7 +27,7 @@ CREATE TABLE Ressource (
     quantite INT,
     fournisseur VARCHAR(255),
     id_tache INT,
-    FOREIGN KEY (id_tache) REFERENCES Tache(id_tache)
+    FOREIGN KEY (id_tache) REFERENCES Tache(id_tache) ON DELETE CASCADE
 );
 
 -- Insertion d'un projet
