@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ page import="java.util.List" %>
+<%@ page import="java.util.Collections" %>
+<%@ page import="java.util.Comparator" %>
 <%@ page import="metier.Projet" %>
 <%@ page import="dao.ProjetDAOImpl" %>
 
@@ -16,6 +18,14 @@
     // Initialize the DAO and retrieve the list of projects
     ProjetDAOImpl projetDAO = new ProjetDAOImpl();
     List<Projet> listeProjets = projetDAO.findAll();
+
+    // Sort the list of projects by ID
+    Collections.sort(listeProjets, new Comparator<Projet>() {
+        @Override
+        public int compare(Projet p1, Projet p2) {
+            return Integer.compare(p1.getId_projet(), p2.getId_projet());
+        }
+    });
 %>
 
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
@@ -38,8 +48,6 @@
     </div>
 </nav>
 
-
-
 <div class="container">
     <h1 class="mt-5">Liste des Projets</h1>
     <a href="addProjet.jsp" class="btn btn-primary mb-3">Ajouter Projet</a>
@@ -59,7 +67,7 @@
                     <div class="d-flex justify-content-between">
                         <a href="EditProjetServlet?idProjet=<%= projet.getId_projet() %>" class="btn btn-warning btn-sm">Modifier</a>
                         <a href="DeleteProjetServlet?idProjet=<%= projet.getId_projet() %>" class="btn btn-danger btn-sm">Supprimer</a>
-                        <a href="afficherTache.jsp?projectId=<%= projet.getId_projet() %>" class="btn btn-info  btn-sm">Gérer les Tâches</a>
+                        <a href="afficherTache.jsp?projectId=<%= projet.getId_projet() %>" class="btn btn-info btn-sm">Gérer les Tâches</a>
                     </div>
                 </div>
             </div>
