@@ -59,7 +59,7 @@
                     <div class="d-flex justify-content-between">
                         <a href="EditProjetServlet?idProjet=<%= projet.getId_projet() %>" class="btn btn-warning btn-sm">Modifier</a>
                         <a href="DeleteProjetServlet?idProjet=<%= projet.getId_projet() %>" class="btn btn-danger btn-sm">Supprimer</a>
-                        <a href="afficherTache.jsp?projectId=<%= projet.getId_projet() %>" class="btn btn-info btn-sm">Gérer les Tâches</a>
+                        <a href="afficherTache.jsp?projectId=<%= projet.getId_projet() %>" class="btn btn-info  btn-sm">Gérer les Tâches</a>
                     </div>
                 </div>
             </div>
