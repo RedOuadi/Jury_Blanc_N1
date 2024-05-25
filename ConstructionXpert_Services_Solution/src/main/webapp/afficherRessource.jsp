@@ -6,8 +6,6 @@
 <%@ page import="metier.Tache" %>
 <%@ page import="dao.TacheDAOImpl" %>
 
-
-
 <!DOCTYPE html>
 <html>
 <head>
@@ -30,8 +28,12 @@
     Tache tache = tacheDAO.getTache(idTache);
 
     RessourceDAOImpl ressourceDAO = new RessourceDAOImpl();
-    List<Ressource> ressources = ressourceDAO.findAll();
-
+    List<Ressource> ressources = new ArrayList<>();
+    for (Ressource ressource : ressourceDAO.findAll()) {
+        if (ressource.getId_tache() == idTache) {
+            ressources.add(ressource);
+        }
+    }
 %>
 <div class="container">
     <h1 class="mt-5">Gérer les Ressources pour la tâche: <%= tache != null ? tache.getDescription() : "Tâche non trouvée" %></h1>
@@ -48,6 +50,11 @@
         </tr>
         </thead>
         <tbody>
+        <% if (ressources.isEmpty()) { %>
+        <tr>
+            <td colspan="6">Aucune ressource trouvée pour cette tâche.</td>
+        </tr>
+        <% } else { %>
         <% for (Ressource ressource : ressources) { %>
         <tr>
             <th scope="row"><%= ressource.getId_ressource() %></th>
@@ -61,10 +68,12 @@
             </td>
         </tr>
         <% } %>
+        <% } %>
         </tbody>
     </table>
 </div>
 
 </body>
 </html>
+
 
