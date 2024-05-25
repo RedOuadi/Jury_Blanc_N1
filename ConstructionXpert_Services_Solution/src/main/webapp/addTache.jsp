@@ -25,8 +25,9 @@
                     <h2 class="card-title">Ajouter Tâche</h2>
                 </div>
                 <div class="card-body">
-                    <form action="AddTacheServlet" method="POST">
-                        <div class="form-group">
+                    <form onsubmit="return validerFormulaireTache();" action="AddTacheServlet" method="POST">
+
+                    <div class="form-group">
                             <label for="description">Description</label>
                             <input type="text" class="form-control" id="description" name="description" placeholder="Description">
                         </div>
@@ -59,6 +60,7 @@
 </div>
 
 <!-- Include Bootstrap JS and dependencies -->
+<script src="js/valide.js"></script>
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>

@@ -17,7 +17,7 @@
                     <h2 class="card-title">Modifier Tâche</h2>
                 </div>
                 <div class="card-body">
-                    <form action="EditTacheResponseServlet" method="POST">
+                    <form onsubmit="return validerFormulaireTache();" action="EditTacheResponseServlet" method="POST">
                         <% Tache tache = (Tache) request.getAttribute("tache"); %>
                         <input type="hidden" name="id_tache" value="<%= tache.getId_tache() %>">
                         <div class="form-group">

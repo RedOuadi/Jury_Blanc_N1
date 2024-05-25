@@ -6,6 +6,7 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import dao.TacheDAOImpl;
+import metier.Tache;
 
 import java.io.IOException;
 
@@ -17,12 +18,17 @@ public class DeleteTacheServlet extends HttpServlet {
         // Récupérer l'ID de la tâche à supprimer depuis l'URL
         int idTache = Integer.parseInt(request.getParameter("idTache"));
 
-        // Supprimer la tâche de la base de données
+        // Récupérer la tâche pour obtenir le projectId
         TacheDAOImpl tacheDAO = new TacheDAOImpl();
+        Tache tache = tacheDAO.getTache(idTache);
+        int projectId = tache.getId_projet();
+
+        // Supprimer la tâche de la base de données
         tacheDAO.deleteTache(idTache);
 
-        // Rediriger vers la page d'affichage des tâches après la suppression
-        response.sendRedirect("afficherTache.jsp");
+        // Rediriger vers la page d'affichage des tâches avec le projectId comme paramètre
+        response.sendRedirect("afficherTache.jsp?projectId=" + projectId);
     }
 }
+
 

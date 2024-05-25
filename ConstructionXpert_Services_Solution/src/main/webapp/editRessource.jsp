@@ -17,7 +17,7 @@
           <h2 class="card-title">Modifier Ressource</h2>
         </div>
         <div class="card-body">
-          <form action="EditRessourceResponseServlet" method="POST">
+          <form onsubmit="return validerFormulaireRessource();" action="EditRessourceResponseServlet" method="POST">
             <%-- Assurez-vous que l'objet ressource n'est pas null avant de l'utiliser --%>
             <% if (request.getAttribute("ressource") != null) { %>
             <% Ressource ressource = (Ressource) request.getAttribute("ressource"); %>

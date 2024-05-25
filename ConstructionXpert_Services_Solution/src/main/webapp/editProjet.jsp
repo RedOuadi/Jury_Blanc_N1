@@ -18,12 +18,12 @@
                     <h2 class="card-title">Modifier Projet</h2>
                 </div>
                 <div class="card-body">
-                    <form action="EditProjetResponseServlet" method="POST">
+                    <form onsubmit="return validerFormulaireProjet()" action="EditProjetResponseServlet" method="POST">
                         <% Projet projet = (Projet) request.getAttribute("projet"); %>
                         <input type="hidden" name="id_projet" value="<%= projet.getId_projet() %>">
                         <div class="form-group">
-                            <label for="nom_proj">Nom du Projet</label>
-                            <input type="text" class="form-control" id="nom_proj" name="nom_proj" value="<%= projet.getNom() %>" required>
+                            <label for="nom_projet">Nom du Projet</label>
+                            <input type="text" class="form-control" id="nom_projet" name="nom_proj" value="<%= projet.getNom() %>" required>
                         </div>
                         <div class="form-group">
                             <label for="description">Description</label>
@@ -53,6 +53,7 @@
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+<script src="js/valide.js"></script>
 </body>
 </html>
 

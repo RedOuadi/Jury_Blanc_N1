@@ -11,6 +11,7 @@
     <meta charset="UTF-8">
     <title>Liste des Projets</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+
 </head>
 
 <body>
@@ -38,9 +39,6 @@
     </button>
     <div class="collapse navbar-collapse" id="navbarNav">
         <ul class="navbar-nav ">
-            <li class="nav-item">
-                <a class="nav-link" href="index.jsp">Accueil</a>
-            </li>
             <li class="nav-item active">
                 <a class="nav-link" href="afficherProjet.jsp">Projets</a>
             </li>
@@ -57,7 +55,7 @@
             <div class="card">
                 <div class="card-body">
                     <h5 class="card-title"><%= projet.getNom() %></h5>
-                    <h6 class="card-subtitle mb-2 text-muted">ID: <%= projet.getId_projet() %></h6>
+
                     <p class="card-text">
                         <strong>Description:</strong> <%= projet.getDescription() %><br>
                         <strong>Date de Début:</strong> <%= projet.getDateDebut() %><br>
@@ -94,7 +92,7 @@
 <script src="js/jquery.min.js"></script>
 <script src="js/popper.js"></script>
 <script src="js/bootstrap.min.js"></script>
-<script src="js/main.js"></script>
+
 </body>
 </html>
 
