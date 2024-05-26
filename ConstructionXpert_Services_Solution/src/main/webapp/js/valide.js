@@ -1,14 +1,19 @@
-// Fonction de validation du formulaire de projet
-function validerFormulaireProjet() {
+function validerFormulaireProjet(event) {
+    event.preventDefault(); // Empêcher la soumission du formulaire
+
     var nomProjet = document.getElementById("nom_projet").value;
     var description = document.getElementById("description").value;
     var dateDebut = document.getElementById("date_debut").value;
     var dateFin = document.getElementById("date_fin").value;
     var budget = document.getElementById("budget").value;
 
+    var messageErreur = document.getElementById("message-erreur");
+    messageErreur.textContent = ""; // Réinitialiser le message d'erreur
+
     if (nomProjet === "" || description === "" || dateDebut === "" || dateFin === "" || budget === "") {
-        alert("Veuillez remplir tous les champs du formulaire.");
-        return false;
+        messageErreur.textContent = "Veuillez remplir tous les champs du formulaire.";
+        messageErreur.style.color = "red";
+        return;
     }
 
     // Convertir les dates en objets Date
@@ -17,12 +22,15 @@ function validerFormulaireProjet() {
 
     // Vérifier si la date de fin est postérieure à la date de début
     if (fin <= debut) {
-        alert("La date de fin doit être postérieure à la date de début.");
-        return false;
+        messageErreur.textContent = "La date de fin doit être postérieure à la date de début.";
+        messageErreur.style.color = "red";
+        return;
     }
 
-    return true;
+    // Si toutes les validations sont réussies, soumettre le formulaire
+    event.target.submit();
 }
+
 
 // Fonction de validation du formulaire de tâche
 function validerFormulaireTache() {

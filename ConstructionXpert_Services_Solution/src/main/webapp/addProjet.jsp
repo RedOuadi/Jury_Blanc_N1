@@ -32,9 +32,8 @@
                     <h2 class="card-title">Ajouter Projet</h2>
                 </div>
                 <div class="card-body">
-                    <form onsubmit="return validerFormulaireProjet();" action="AddProjetServlet" method="POST">
-
-                    <div class="form-group">
+                    <form onsubmit="validerFormulaireProjet(event);" action="AddProjetServlet" method="POST">
+                        <div class="form-group">
                             <label for="nom_projet">Nom du Projet</label>
                             <input type="text" class="form-control" id="nom_projet" name="nom_proj" placeholder="Nom du Projet">
                         </div>
@@ -45,18 +44,16 @@
                         <div class="form-group">
                             <label for="date_debut">Date de Début</label>
                             <input type="date" class="form-control" id="date_debut" name="date_debut">
-
-
                         </div>
                         <div class="form-group">
                             <label for="date_fin">Date de Fin</label>
                             <input type="date" class="form-control" id="date_fin" name="date_fin">
-
                         </div>
                         <div class="form-group">
                             <label for="budget">Budget</label>
                             <input type="number" class="form-control" id="budget" name="budget" placeholder="Budget">
                         </div>
+                        <div id="message-erreur"></div>
                         <button type="submit" class="btn btn-success btn-block">Ajouter</button>
                     </form>
                 </div>
