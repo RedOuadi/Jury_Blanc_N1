@@ -18,7 +18,7 @@
                     <h2 class="card-title">Modifier Projet</h2>
                 </div>
                 <div class="card-body">
-                    <form onsubmit="return validerFormulaireProjet()" action="EditProjetResponseServlet" method="POST">
+                    <form onsubmit="return validerFormulaireProjet(event)" action="EditProjetResponseServlet" method="POST">
                         <% Projet projet = (Projet) request.getAttribute("projet"); %>
                         <input type="hidden" name="id_projet" value="<%= projet.getId_projet() %>">
                         <div class="form-group">
@@ -41,6 +41,7 @@
                             <label for="budget">Budget</label>
                             <input type="number" class="form-control" id="budget" name="budget" value="<%= projet.getBudget() %>" required>
                         </div>
+                        <div id="message-erreur"></div>
                         <button type="submit" class="btn btn-success btn-block">Enregistrer</button>
                     </form>
                 </div>

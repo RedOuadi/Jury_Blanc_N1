@@ -17,7 +17,7 @@
                     <h2 class="card-title">Modifier Tâche</h2>
                 </div>
                 <div class="card-body">
-                    <form onsubmit="return validerFormulaireTache();" action="EditTacheResponseServlet" method="POST">
+                    <form onsubmit="validerFormulaireTache(event);" action="EditTacheResponseServlet" method="POST">
                         <% Tache tache = (Tache) request.getAttribute("tache"); %>
                         <input type="hidden" name="id_tache" value="<%= tache.getId_tache() %>">
                         <div class="form-group">
@@ -36,6 +36,7 @@
                             <label for="statut">Statut</label>
                             <input type="text" class="form-control" id="statut" name="statut" value="<%= tache.getStatut() %>" required>
                         </div>
+                        <div id="message-erreur-tache"></div>
                         <input type="hidden" name="id_projet" value="<%= tache.getId_projet() %>">
                         <button type="submit" class="btn btn-success btn-block">Enregistrer</button>
                     </form>

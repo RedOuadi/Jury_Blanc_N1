@@ -25,7 +25,7 @@
                     <h2 class="card-title">Ajouter Tâche</h2>
                 </div>
                 <div class="card-body">
-                    <form onsubmit="return validerFormulaireTache();" action="AddTacheServlet" method="POST">
+                    <form onsubmit="validerFormulaireTache(event);" action="AddTacheServlet" method="POST">
 
                     <div class="form-group">
                             <label for="description">Description</label>
@@ -51,6 +51,7 @@
                                 <% } %>
                             </select>
                         </div>
+                        <div id="message-erreur-tache"></div>
                         <button type="submit" class="btn btn-success btn-block">Ajouter</button>
                     </form>
                 </div>

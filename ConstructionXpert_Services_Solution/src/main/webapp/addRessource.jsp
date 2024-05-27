@@ -52,6 +52,7 @@
                                 <% } %>
                             </select>
                         </div>
+                        <div id="message-erreur-ressource"></div>
                         <button type="submit" class="btn btn-success btn-block">Ajouter</button>
                     </form>
                 </div>

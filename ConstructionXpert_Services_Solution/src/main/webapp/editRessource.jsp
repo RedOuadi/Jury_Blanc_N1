@@ -17,7 +17,7 @@
           <h2 class="card-title">Modifier Ressource</h2>
         </div>
         <div class="card-body">
-          <form onsubmit="return validerFormulaireRessource();" action="EditRessourceResponseServlet" method="POST">
+          <form onsubmit="validerFormulaireRessource(event);" action="EditRessourceResponseServlet" method="POST">
             <%-- Assurez-vous que l'objet ressource n'est pas null avant de l'utiliser --%>
             <% if (request.getAttribute("ressource") != null) { %>
             <% Ressource ressource = (Ressource) request.getAttribute("ressource"); %>
@@ -38,6 +38,7 @@
               <label for="fournisseur">Fournisseur</label>
               <input type="text" class="form-control" id="fournisseur" name="fournisseur" value="<%= ressource.getFournisseur() %>" required>
             </div>
+              <div id="message-erreur-ressource"></div>
             <input type="hidden" name="id_tache" value="<%= ressource.getId_tache() %>">
             <button type="submit" class="btn btn-success btn-block">Enregistrer</button>
             <% } else { %>
